@@ -5,22 +5,30 @@ import { getCharactersByQuery } from "../utils";
 import styles from "./Home.module.css";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
+import PagesContext from "../context/PagesContext";
+import { useContext } from "react";
+import EpisodesModal from "./EpisodesModal/EpisodesModal";
 
 function Home() {
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [characters, setCharacters] = useState({});
   const [searchName, setSearchName] = useState("");
+  const [show, setShow] = useState(false);
+  const { pageNumber, setPageNumber } = useContext(PagesContext);
   useEffect(() => {
-    getCharacters(page).then((data) => setCharacters(data));
+    getCharacters(pageNumber).then((data) => setCharacters(data));
+    console.log(pageNumber, "pages number es");
   }, []);
   const changePage = (data) => {
-    console.log(data, "data es");
-    setPage(data.selected + 1);
+    // console.log(data, "data es");
+    setPageNumber(data.selected + 1);
+    // setPage(data.selected + 1);
     getCharacters(data.selected + 1).then((data) => setCharacters(data));
   };
   const handleSubmit = (e, name) => {
     e.preventDefault();
     getCharactersByQuery(name).then((data) => setCharacters(data));
+    setPageNumber(1);
   };
   const handleChange = (e) => {
     e.preventDefault();
@@ -51,6 +59,13 @@ function Home() {
                   <h4>{c.status}</h4>
                   <h4>{c.species}</h4>
                   <h4>{c.gender}</h4>
+                  {/* <h4>Episodes list</h4> */}
+                  {/* <Link to={`/character/episodes/${c.id}`}>
+                    {" "}
+                    <h5>Episodes list</h5>
+                  </Link> */}
+                  <button onClick={() => setShow(true)}>Episodes List</button>
+                  <EpisodesModal onClose={() => setShow(false)} show={show} />
                   <Link to={`/character/${c.id}`}>
                     {" "}
                     <h5>Detail</h5>
@@ -67,6 +82,7 @@ function Home() {
             activeClassName={styles.active}
             previousLabel="< previous"
             renderOnZeroPageCount={null}
+            forcePage={pageNumber - 1}
           />
         </div>
       ) : (
