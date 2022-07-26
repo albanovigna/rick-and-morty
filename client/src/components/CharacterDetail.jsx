@@ -20,7 +20,7 @@ function CharacterDetail() {
           <img src={characterDetail.image} alt="character image" />
           <h4>Name: {characterDetail.name}</h4>
           <h4>Status: {characterDetail.status}</h4>
-          <h4>Air Date: {characterDetail.species}</h4>
+          <h4>Species: {characterDetail.species}</h4>
           <h4>
             Type: {characterDetail.type !== "" ? characterDetail.type : "None"}
           </h4>

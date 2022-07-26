@@ -16,12 +16,13 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/search", async (req, res) => {
-  const { name } = req.query;
+  const { page, name } = req.query;
   if (name) {
     try {
       const result = await axios.get(
-        `https://rickandmortyapi.com/api/character?name=${name}`
+        `https://rickandmortyapi.com/api/character?page=${page}&name=${name}`
       );
+      result.data.isQuery = true;
       res.json(result.data);
     } catch (error) {
       console.log(error);

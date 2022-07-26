@@ -1,0 +1,32 @@
+.modalDiv {
+  /* width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color: rgba(91, 112, 131, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  width: 350px;
+  height: 200px;
+  background-color: white;
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+.modal h3 {
+  color: black;
+}
+.modal p {
+  color: red;
+}

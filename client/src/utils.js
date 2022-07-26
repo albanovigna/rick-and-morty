@@ -10,7 +10,9 @@ export const getCharacterById = async (id) => {
   return result.data;
 };
 
-export const getCharactersByQuery = async (name) => {
-  const result = await axios.get(`/characters/search?name=${name}`);
+export const getCharactersByQuery = async (pageNumber, name) => {
+  const result = await axios.get(
+    `/characters/search?page=${pageNumber}&name=${name}`
+  );
   return result.data;
 };

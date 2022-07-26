@@ -13,6 +13,7 @@
 .modalContent {
   width: 500px;
   background-color: #fff;
+  color: black;
 }
 
 .modalHeader,
@@ -22,6 +23,7 @@
 
 .modalTitle {
   margin: 0;
+  color: black;
 }
 
 .modalBody {
