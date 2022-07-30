@@ -2,29 +2,37 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { getCharacters } from "../utils";
 import { getCharactersByQuery } from "../utils";
+import { getEpisodes } from "../utils";
 import styles from "./Home.module.css";
 import ReactPaginate from "react-paginate";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import PagesContext from "../context/PagesContext";
 import CharactersContext from "../context/CharactersContext";
+import EpisodesContext from "../context/EpisodesContext";
 import { useContext } from "react";
-import EpisodesModal from "./EpisodesModal/EpisodesModal";
 
 function Home() {
-  // const [page, setPage] = useState(1);
-  // const [characters, setCharacters] = useState({});
   const location = useLocation();
   const [searchName, setSearchName] = useState("");
-  const [show, setShow] = useState(false);
+
   const { pageNumber, setPageNumber } = useContext(PagesContext);
   const { characters, setCharacters } = useContext(CharactersContext);
+  const { episodes, setEpisodes } = useContext(EpisodesContext);
   useEffect(() => {
     if (!characters.info) {
-      getCharacters(pageNumber).then((data) => setCharacters(data));
+      getCharacters(pageNumber).then((data) => {
+        setCharacters(data);
+        const urls = data.results.map((c) => c.episode);
+        getEpisodes(urls).then((data) => setEpisodes(data));
+
+        console.log(episodes, "ep es");
+      });
+      console.log(characters);
     }
   }, []);
   const changePage = (data) => {
     console.log(data.selected + 1, "page es");
+    console.log(episodes, "episodes es");
     setPageNumber(data.selected + 1);
     // setPage(data.selected + 1);
     characters.isQuery
@@ -52,7 +60,7 @@ function Home() {
 
   return (
     <div>
-      {characters.results ? (
+      {characters.results && episodes.length > 1 ? (
         <div>
           <h3>Rick and Morty characters</h3>
           <div>
@@ -77,22 +85,15 @@ function Home() {
                   {/* <h4>Episodes list</h4> */}
                   <div>
                     <Link
-                      // onClick={() => setShow(true)}
-                      // to={`/episodes`}
                       to="episodes"
-                      state={{ background: location, episodes: c.episode }}
+                      state={{ background: location, episodes: episodes[i] }}
                     >
                       {" "}
                       <h5>Episodes list</h5>
                     </Link>
                     <Outlet />
                   </div>
-                  {/* <button onClick={() => setShow(true)}>Episodes List</button>
-                  <EpisodesModal
-                    onClose={() => setShow(false)}
-                    show={show}
-                    episodes={c.episode}
-                  /> */}
+
                   <Link to={`/character/${c.id}`}>
                     {" "}
                     <h5>Detail</h5>

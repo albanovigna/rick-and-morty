@@ -16,3 +16,9 @@ export const getCharactersByQuery = async (pageNumber, name) => {
   );
   return result.data;
 };
+
+export const getEpisodes = async (episodesList) => {
+  const result = await axios.post(`/episodes`, { episodes: episodesList });
+  console.log(result.data, "episodes es");
+  return result.data;
+};
