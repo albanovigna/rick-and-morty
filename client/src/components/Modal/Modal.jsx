@@ -6,7 +6,6 @@ export const Modal = () => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    console.log(location.state);
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "unset";

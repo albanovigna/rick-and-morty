@@ -1,0 +1,22 @@
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  width: 410px;
+  height: 700px;
+  background-color: #0a222d;
+  /* background-color: white; */
+  border-radius: 5px;
+}
+
+.modal h4 {
+  color: red;
+}

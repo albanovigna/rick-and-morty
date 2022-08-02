@@ -10,9 +10,10 @@ import PagesContext from "../context/PagesContext";
 import CharactersContext from "../context/CharactersContext";
 import EpisodesContext from "../context/EpisodesContext";
 import { useContext } from "react";
+import Table from "./Table/Table";
+import searchIcon from "../assets/magnifyingglass.png";
 
 function Home() {
-  const location = useLocation();
   const [searchName, setSearchName] = useState("");
 
   const { pageNumber, setPageNumber } = useContext(PagesContext);
@@ -57,58 +58,46 @@ function Home() {
     setPageNumber(1);
     getCharacters(pageNumber).then((data) => setCharacters(data));
   };
-
   return (
     <div>
       {characters.results && episodes.length > 1 ? (
         <div>
-          <h3>Rick and Morty characters</h3>
-          <div>
+          <h3 className={styles.title}>Rick and Morty characters</h3>
+          <div className={styles.inputContainer}>
+            <button
+              className={styles.btnSearch}
+              type="submit"
+              onClick={(e) => handleSubmit(e, searchName)}
+            >
+              <img src={searchIcon} alt="" />
+            </button>
             <input
+              className={styles.inputSearch}
               type="text"
+              placeholder="Search Character"
               onChange={(e) => handleChange(e)}
               value={searchName}
             />
-            <button type="submit" onClick={(e) => handleSubmit(e, searchName)}>
-              Submit
-            </button>
-            <button onClick={(e) => handleReset(e)}>Reset search</button>
-          </div>
-          {characters.results &&
-            characters.results.map((c, i) => {
-              return (
-                <div key={c.id} className={styles.row}>
-                  <h4>{c.name}</h4>
-                  <h4>{c.status}</h4>
-                  <h4>{c.species}</h4>
-                  <h4>{c.gender}</h4>
-                  {/* <h4>Episodes list</h4> */}
-                  <div>
-                    <Link
-                      to="episodes"
-                      state={{ background: location, episodes: episodes[i] }}
-                    >
-                      {" "}
-                      <h5>Episodes list</h5>
-                    </Link>
-                    <Outlet />
-                  </div>
 
-                  <Link to={`/character/${c.id}`}>
-                    {" "}
-                    <h5>Detail</h5>
-                  </Link>
-                </div>
-              );
-            })}
+            {/* <button onClick={(e) => handleReset(e)}>Reset search</button> */}
+          </div>
+          {characters.results && (
+            <Table data={characters.results} episodes={episodes}></Table>
+          )}
           <ReactPaginate
             breakLabel="..."
-            nextLabel="next >"
+            nextLabel=">>"
             onPageChange={changePage}
             pageRangeDisplayed={5}
             pageCount={characters.info.pages}
+            containerClassName={styles.paginationContainer}
+            pageClassName={styles.page}
+            breakLinkClassName={styles.breakLink}
+            pageLinkClassName={styles.pageLink}
+            previousLinkClassName={styles.prevLink}
+            nextLinkClassName={styles.nextLink}
             activeClassName={styles.active}
-            previousLabel="< previous"
+            previousLabel="<<"
             renderOnZeroPageCount={null}
             forcePage={pageNumber - 1}
           />
