@@ -112,23 +112,28 @@ function Home() {
             </div>
           )}
           {characters.results && episodes.length > 1 && (
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel=">>"
-              onPageChange={changePage}
-              pageRangeDisplayed={5}
-              pageCount={characters.info.pages}
-              containerClassName={styles.paginationContainer}
-              pageClassName={styles.page}
-              breakLinkClassName={styles.breakLink}
-              pageLinkClassName={styles.pageLink}
-              previousLinkClassName={styles.prevLink}
-              nextLinkClassName={styles.nextLink}
-              activeClassName={styles.active}
-              previousLabel="<<"
-              renderOnZeroPageCount={null}
-              forcePage={pageNumber - 1}
-            />
+            <div>
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel=">>"
+                onPageChange={changePage}
+                pageRangeDisplayed={5}
+                pageCount={characters.info.pages}
+                containerClassName={styles.paginationContainer}
+                pageClassName={styles.page}
+                breakLinkClassName={styles.breakLink}
+                pageLinkClassName={styles.pageLink}
+                previousLinkClassName={styles.prevLink}
+                nextLinkClassName={styles.nextLink}
+                activeClassName={styles.active}
+                previousLabel="<<"
+                renderOnZeroPageCount={null}
+                forcePage={pageNumber - 1}
+              />
+              <footer className={styles.footer}>
+                <h3>Made with ❤️ by Albano Vignaduzzi</h3>
+              </footer>
+            </div>
           )}
         </div>
       ) : (
