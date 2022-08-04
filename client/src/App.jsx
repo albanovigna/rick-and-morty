@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from "react";
+import "./App.css";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Home from "./components/Home/Home";
+import CharacterDetail from "./components/CharacterDetail/CharacterDetail";
+import { Modal } from "./components/Modal/Modal";
+import { PagesContextProvider } from "./context/PagesContext";
+import { CharactersContextProvider } from "./context/CharactersContext";
+import { EpisodesContextProvider } from "./context/EpisodesContext";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const location = useLocation();
+  const background = location.state && location.state.background;
+  const isModal = location.state && location.state.isModal;
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <CharactersContextProvider>
+        <PagesContextProvider>
+          <EpisodesContextProvider>
+            <Routes location={background || isModal || location}>
+              <Route exact path="/" element={<Home />} />
+            </Routes>
+            {background && (
+              <Routes>
+                <Route path="episodes" element={<Modal />} />
+              </Routes>
+            )}
+            {isModal && (
+              <Routes>
+                <Route
+                  exact
+                  path="character/:id"
+                  element={<CharacterDetail />}
+                />
+              </Routes>
+            )}
+          </EpisodesContextProvider>
+        </PagesContextProvider>
+      </CharactersContextProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
