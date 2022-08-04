@@ -18,8 +18,8 @@
   font-size: 40px;
   color: #00dfdd;
   text-align: center;
-  position: absolute;
-  width: 100%;
+  position: sticky;
+  width: 1280px;
   top: 50%;
   transform: translateY(-50%);
 }

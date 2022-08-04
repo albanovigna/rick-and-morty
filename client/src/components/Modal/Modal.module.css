@@ -19,11 +19,12 @@
 }
 .modalBody {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .modal h3 {
-  color: black;
+  color: #00dfdd;
 }
 .modal p {
   color: red;

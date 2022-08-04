@@ -37,6 +37,7 @@ function Table({ data, episodes }) {
             <button className={styles.customBtn}>View</button>
           </Link>
         ),
+        disableSortBy: true,
       },
       {
         Header: "Detail",
@@ -51,6 +52,7 @@ function Table({ data, episodes }) {
             <img src={eye} alt="" />
           </Link>
         ),
+        disableSortBy: true,
       },
     ],
     []

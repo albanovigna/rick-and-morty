@@ -12,6 +12,8 @@ import { useContext } from "react";
 import Table from "../Table/Table";
 import searchIcon from "../../assets/magnifyingglass.png";
 import siriusImage from "../../assets/logo_alta_ 1 1.png";
+import githubIcon from "../../assets/icons8-github-30.png";
+import linkedinIcon from "../../assets/icons8-linkedin-circled-30.png";
 import { Oval } from "react-loader-spinner";
 
 function Home() {
@@ -56,7 +58,6 @@ function Home() {
     setSendData(true);
     getCharactersByQuery(pageNumber, name).then((data) => {
       setCharacters(data);
-
       setSendData(false);
     });
     setPageNumber(1);
@@ -111,7 +112,7 @@ function Home() {
               />
             </div>
           )}
-          {characters.results && episodes.length > 1 && (
+          {characters.results && episodes.length > 1 && !sendData && (
             <div>
               <ReactPaginate
                 breakLabel="..."
@@ -130,9 +131,27 @@ function Home() {
                 renderOnZeroPageCount={null}
                 forcePage={pageNumber - 1}
               />
-              <footer className={styles.footer}>
-                <h3>Made with ❤️ by Albano Vignaduzzi</h3>
-              </footer>
+              {!sendData && (
+                <footer className={styles.footer}>
+                  <h3>Made with ❤️ by Albano Vignaduzzi</h3>
+                  <div>
+                    <a
+                      href="https://github.com/albanovigna"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={githubIcon} alt="" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/albano-vignaduzzi/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={linkedinIcon} alt="" />
+                    </a>
+                  </div>
+                </footer>
+              )}
             </div>
           )}
         </div>
