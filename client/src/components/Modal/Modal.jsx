@@ -16,6 +16,9 @@ export const Modal = () => {
     <div className={styles.modalDiv} onClick={() => navigate(-1)}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalBody}>
+          <div>
+            <h3>Episodes List</h3>
+          </div>
           <table className={styles.table}>
             <tbody>
               <tr>
