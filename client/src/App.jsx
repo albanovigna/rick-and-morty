@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import CharacterDetail from "./components/CharacterDetail/CharacterDetail";
 import { Modal } from "./components/Modal/Modal";
 import { PagesContextProvider } from "./context/PagesContext";

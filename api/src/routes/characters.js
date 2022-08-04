@@ -17,21 +17,23 @@ router.get("/", async (req, res) => {
 
 router.get("/search", async (req, res) => {
   const { page, name } = req.query;
+  let obj;
   if (name) {
     try {
       const result = await axios.get(
         `https://rickandmortyapi.com/api/character?page=${page}&name=${name}`
       );
       result.data.isQuery = true;
-      res.status(200).json(result.data);
+      obj = result.data;
     } catch (error) {
+      obj = { msg: "error", description: "Not found" };
       console.log(error);
-      res.status(400).json({ msg: "error" });
     }
   } else {
     const result = await axios.get(`https://rickandmortyapi.com/api/character`);
-    res.status(200).json(result.data);
+    obj = result.data;
   }
+  res.status(200).json(obj);
 });
 
 router.get("/:id", async (req, res) => {

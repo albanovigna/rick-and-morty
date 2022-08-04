@@ -17,20 +17,22 @@ export const Modal = () => {
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalBody}>
           <table className={styles.table}>
-            <tr>
-              <th>Season and Episode</th>
-              <th>Name</th>
-              <th>Air date</th>
-            </tr>
-            {location.state.episodes.map((e) => {
-              return (
-                <tr>
-                  <td>{e.episode}</td>
-                  <td>{e.name}</td>
-                  <td>{e.air_date}</td>
-                </tr>
-              );
-            })}
+            <tbody>
+              <tr>
+                <th>Season and Episode</th>
+                <th>Name</th>
+                <th>Air date</th>
+              </tr>
+              {location.state.episodes.map((e, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{e.episode}</td>
+                    <td>{e.name}</td>
+                    <td>{e.air_date}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
         <button className={styles.customBtn} onClick={() => navigate(-1)}>

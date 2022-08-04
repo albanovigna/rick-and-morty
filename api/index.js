@@ -1,5 +1,8 @@
 const server = require("./src/app.js");
+require("dotenv").config();
 
-server.listen(3001, () => {
-  console.log("%s listening at 3001"); // eslint-disable-line no-console
+const PORT = process.env.PORT;
+
+server.listen(PORT, () => {
+  console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
 });

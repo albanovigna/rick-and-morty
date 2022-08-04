@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 import { Link, useLocation } from "react-router-dom";
 import styles from "../Table/Table.module.css";
 import eye from "../../assets/eye.png";
@@ -57,10 +57,13 @@ function Table({ data, episodes }) {
   );
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({
-      columns,
-      data,
-    });
+    useTable(
+      {
+        columns,
+        data,
+      },
+      useSortBy
+    );
 
   // Render the UI for your table
   return (
@@ -69,7 +72,15 @@ function Table({ data, episodes }) {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th
+                {...column.getHeaderProps(column.getSortByToggleProps())}
+                onClick={() => column.toggleSortBy(!column.isSortedDesc)}
+              >
+                {column.render("Header")}
+                <span>
+                  {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
+                </span>
+              </th>
             ))}
           </tr>
         ))}
