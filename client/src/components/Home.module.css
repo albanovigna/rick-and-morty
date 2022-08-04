@@ -1,12 +1,3 @@
-/* .title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 40px;
-  color: #00dfdd;
-}
-.logo {
-  margin-left: auto;
-  display: block;
-} */
 .wrapper {
   width: 100%;
   position: relative;
@@ -116,4 +107,12 @@
 .nextLink:hover,
 .breakLink:hover {
   color: #ffffffff;
+}
+
+.loaderDiv {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

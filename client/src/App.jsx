@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import React from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import CharacterDetail from "./components/CharacterDetail/CharacterDetail";
-import EpisodesModal from "./components/EpisodesModal/EpisodesModal";
 import { Modal } from "./components/Modal/Modal";
 import { PagesContextProvider } from "./context/PagesContext";
 import { CharactersContextProvider } from "./context/CharactersContext";

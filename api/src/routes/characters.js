@@ -23,11 +23,14 @@ router.get("/search", async (req, res) => {
         `https://rickandmortyapi.com/api/character?page=${page}&name=${name}`
       );
       result.data.isQuery = true;
-      res.json(result.data);
+      res.status(200).json(result.data);
     } catch (error) {
       console.log(error);
       res.status(400).json({ msg: "error" });
     }
+  } else {
+    const result = await axios.get(`https://rickandmortyapi.com/api/character`);
+    res.status(200).json(result.data);
   }
 });
 
