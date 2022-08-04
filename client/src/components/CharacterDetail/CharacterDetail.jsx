@@ -22,18 +22,57 @@ function CharacterDetail() {
     <div className={styles.container} onClick={() => navigate(-1)}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         {characterDetail.name ? (
-          <div>
-            <img src={characterDetail.image} alt="character image" />
-            <h4>Name: {characterDetail.name}</h4>
-            <h4>Status: {characterDetail.status}</h4>
-            <h4>Species: {characterDetail.species}</h4>
-            <h4>
-              Type:{" "}
-              {characterDetail.type !== "" ? characterDetail.type : "None"}
-            </h4>
-            <h4>Gender: {characterDetail.gender}</h4>
-            <h4>Origin: {characterDetail.origin.name}</h4>
-            <h4>Location name: {characterDetail.location.name}</h4>
+          <div className={styles.infoContainer}>
+            <img
+              className={styles.characterImage}
+              src={characterDetail.image}
+              alt="character image"
+            />
+            <div className={styles.details}>
+              <div className={styles.sectionInfo}>
+                <h4>Name</h4>
+                <div className={styles.dataContainer}>
+                  <h3>{characterDetail.name}</h3>
+                </div>
+              </div>
+              <div className={styles.sectionInfo}>
+                <h4>Status</h4>
+                <div className={styles.dataContainer}>
+                  <h3>{characterDetail.status}</h3>
+                </div>
+              </div>
+              <div className={styles.sectionInfo}>
+                <h4>Type</h4>
+                <div className={styles.dataContainer}>
+                  <h3>
+                    {characterDetail.type !== ""
+                      ? characterDetail.type
+                      : "None"}
+                  </h3>
+                </div>
+              </div>
+              <div className={styles.sectionInfo}>
+                <h4>Gender</h4>
+                <div className={styles.dataContainer}>
+                  <h3>{characterDetail.gender}</h3>
+                </div>
+              </div>
+              <div className={styles.sectionInfo}>
+                <h4>Origin</h4>
+                <div className={styles.dataContainer}>
+                  <h3>{characterDetail.origin.name}</h3>
+                </div>
+              </div>
+              <div className={styles.sectionInfo}>
+                <h4>Location</h4>
+                <div className={styles.dataContainer}>
+                  <h3>{characterDetail.location.name}</h3>
+                </div>
+              </div>
+            </div>
+            <button className={styles.customBtn} onClick={() => navigate(-1)}>
+              Close
+            </button>
           </div>
         ) : (
           <h4>...Loading</h4>

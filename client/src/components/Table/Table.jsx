@@ -34,7 +34,7 @@ function Table({ data, episodes }) {
             state={{ background: location, episodes: episodes[row.index] }}
           >
             {" "}
-            Episodes list
+            <button className={styles.customBtn}>View</button>
           </Link>
         ),
       },

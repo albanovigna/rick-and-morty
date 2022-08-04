@@ -1,12 +1,4 @@
 .modalDiv {
-  /* width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    background-color: rgba(91, 112, 131, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center; */
   position: fixed;
   left: 0;
   top: 0;
@@ -18,9 +10,14 @@
   justify-content: center;
 }
 .modal {
-  width: 550px;
-  height: 300px;
-  background-color: white;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  width: auto;
+  height: 600px;
+  /* background-color: white; */
+  background-color: #0a222d;
   border-radius: 5px;
   overflow-y: scroll;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../Modal/Modal.module.css";
+import Table from "../Table/Table";
 
 export const Modal = () => {
   const navigate = useNavigate();
@@ -15,7 +16,26 @@ export const Modal = () => {
   return (
     <div className={styles.modalDiv} onClick={() => navigate(-1)}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <div
+        <div className={styles.modalBody}>
+          <table className={styles.table}>
+            <tr>
+              <th>Season and Episode</th>
+              <th>Name</th>
+              <th>Air date</th>
+            </tr>
+            {location.state.episodes.map((e) => {
+              return (
+                <tr>
+                  <td>{e.episode}</td>
+                  <td>{e.name}</td>
+                  <td>{e.air_date}</td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
+
+        {/* <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -41,7 +61,7 @@ export const Modal = () => {
               <h3>{e.air_date}</h3>
             </div>
           );
-        })}
+        })} */}
         <button onClick={() => navigate(-1)}>Close</button>
       </div>
     </div>

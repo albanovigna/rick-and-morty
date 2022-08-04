@@ -12,6 +12,8 @@ import EpisodesContext from "../context/EpisodesContext";
 import { useContext } from "react";
 import Table from "./Table/Table";
 import searchIcon from "../assets/magnifyingglass.png";
+import siriusImage from "../assets/logo_alta_ 1 1.png";
+import eye from "../assets/eye.png";
 
 function Home() {
   const [searchName, setSearchName] = useState("");
@@ -58,11 +60,68 @@ function Home() {
     setPageNumber(1);
     getCharacters(pageNumber).then((data) => setCharacters(data));
   };
+  // const columns = React.useMemo(
+  //   () => [
+  //     {
+  //       Header: "Name",
+  //       accessor: "name",
+  //     },
+  //     {
+  //       Header: "Status",
+  //       accessor: "status",
+  //     },
+  //     {
+  //       Header: "Species",
+  //       accessor: "species",
+  //     },
+  //     {
+  //       Header: "Gender",
+  //       accessor: "gender",
+  //     },
+  //     {
+  //       Header: "Episodes List",
+  //       accessor: "",
+  //       Cell: ({ row }) => (
+  //         <Link
+  //           className={styles.linkEpisodes}
+  //           to="episodes"
+  //           state={{ background: location, episodes: episodes[row.index] }}
+  //         >
+  //           {" "}
+  //           <button className={styles.customBtn}>View</button>
+  //         </Link>
+  //       ),
+  //     },
+  //     {
+  //       Header: "Detail",
+  //       accessor: "",
+  //       Cell: ({ row }) => (
+  //         <Link
+  //           className={styles.linkDetail}
+  //           to={`/character/${row.original.id}`}
+  //           state={{ isModal: location }}
+  //         >
+  //           {" "}
+  //           <img src={eye} alt="" />
+  //         </Link>
+  //       ),
+  //     },
+  //   ],
+  //   []
+  // );
   return (
     <div>
       {characters.results && episodes.length > 1 ? (
         <div>
-          <h3 className={styles.title}>Rick and Morty characters</h3>
+          <div className={styles.wrapper}>
+            <div className={styles.title}>
+              <h3>Rick and Morty characters</h3>
+            </div>
+            <div className={styles.logo}>
+              <img src={siriusImage} alt="" />
+            </div>
+          </div>
+
           <div className={styles.inputContainer}>
             <button
               className={styles.btnSearch}
