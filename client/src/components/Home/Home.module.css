@@ -100,6 +100,7 @@
 .nextLink,
 .breakLink {
   color: #fff;
+  cursor: pointer;
 }
 
 .pageLink:hover,
@@ -119,4 +120,11 @@
 
 .footer h3 {
   font-size: 14px;
+}
+
+.footer img {
+  background-color: #fff;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 10px;
 }
