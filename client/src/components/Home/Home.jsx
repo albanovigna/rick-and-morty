@@ -32,7 +32,9 @@ function Home() {
       getCharacters(pageNumber).then((data) => {
         setCharacters(data);
         const urls = data.results.map((c) => c.episode);
-        getEpisodes(urls).then((data) => setEpisodes(data));
+        getEpisodes(urls).then((data) => {
+          setEpisodes(data);
+        });
       });
     }
     window.addEventListener("keydown", handleKeyDown);
@@ -46,19 +48,31 @@ function Home() {
     characters.isQuery
       ? getCharactersByQuery(data.selected + 1, searchName).then((data) => {
           setCharacters(data);
-          setSendData(false);
+          const urls = data.results.map((c) => c.episode);
+          getEpisodes(urls).then((data) => {
+            setEpisodes(data);
+            setSendData(false);
+          });
         })
       : getCharacters(data.selected + 1).then((data) => {
           setCharacters(data);
-          setSendData(false);
+          const urls = data.results.map((c) => c.episode);
+          getEpisodes(urls).then((data) => {
+            setEpisodes(data);
+            setSendData(false);
+          });
         });
   };
   const handleSubmit = (e, name) => {
     e.preventDefault();
     setSendData(true);
-    getCharactersByQuery(pageNumber, name).then((data) => {
+    getCharactersByQuery(1, name).then((data) => {
       setCharacters(data);
-      setSendData(false);
+      const urls = data.results.map((c) => c.episode);
+      getEpisodes(urls).then((data) => {
+        setEpisodes(data);
+        setSendData(false);
+      });
     });
     setPageNumber(1);
   };
