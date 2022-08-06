@@ -14,6 +14,8 @@ import searchIcon from "../../assets/magnifyingglass.png";
 import siriusImage from "../../assets/logo_alta_ 1 1.png";
 import githubIcon from "../../assets/icons8-github-30.png";
 import linkedinIcon from "../../assets/icons8-linkedin-circled-30.png";
+// import githubIcon from "../../assets/icons8-github-50.png";
+// import linkedinIcon from "../../assets/icons8-linkedin-rodeado-de-círculo-50.png";
 import { Oval } from "react-loader-spinner";
 
 function Home() {
